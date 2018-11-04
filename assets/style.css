@@ -1,0 +1,50 @@
+body{
+    background-color:#ddd;
+}
+
+.gifs-container{
+   margin: auto 0;
+   border-radius: 5px;
+   font-size: 30px;
+   text-decoration: none;
+   margin: 20px;
+   color: blue;
+   position: relative;
+   display: inline-block
+   
+}
+
+#gifs-box{
+    background: lightgoldenrodyellow;
+}
+
+img{
+    display:flex;
+    height: 200px;
+    width: 300px;
+}
+
+h1,h3{
+    text-align:center;
+}
+
+.gif{
+    color:black;
+    background-color:#fff;
+    padding:5px;
+    margin:5px;
+    border-radius: 12px;
+    font-size:15px;
+}
+
+#new-button{
+    color:black;
+    background-color:#fff;
+    padding:5px;
+    margin:5px;
+    border-radius: 12px;
+    font-size:15px;
+
+}
+
+
