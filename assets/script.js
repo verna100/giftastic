@@ -20,6 +20,7 @@ $(".gif").on("click", function() {
   var chosen = $(this).attr("data-name");
   // Constructing a queryURL using the topic name
   var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=eZzkagxWq5nqa76kt0h8tGDtAk5EZMyj&q=" + chosen + "&limit=10&offset=0&rating=PG&lang=en";
+  
 
   $.ajax({
     url: queryURL,
@@ -37,35 +38,19 @@ $(".gif").on("click", function() {
         var p = $("<p>");
         p.text("Rating: " + results[i].rating);
 
+        var animated = results[i].images.fixed_height.url;
+          var still = results[i].images.fixed_height_still.url;
+
         var gifImage = $("<img>");
         gifImage.attr("src", results[i].images.fixed_height.url);
+        gifImage.attr("src", still);
+          gifImage.attr("data-still", still);
+          gifImage.attr("data-animate", animated);
+          gifImage.attr("data-state", "still");
+          gifImage.addClass("gif-image");
 
         gifImage.prepend(p);
         gifDiv.prepend(gifImage);
-
-        // // still and animate logic
-      // ----something is off here that I cannot find, keeps telling me still state is not defined!----
-      // $(document).on('click', '.giphy', function(){
-      //  var state = $(this).attr("data-state");
-      //  if(state === 'still'){
-      //       $(this).attr("src", $(this).attr("data-animate"));
-      //       $(this).attr("data-state", "animate");
-      //   }else{
-      //       $(this).attr("src", $(this).attr("data-still"));
-      //       $(this).attr("data-state", "still");
-      //   }
-      // })
-
-      //   var gifImage = $("<img>");
-      //   gifImage.addClass('giphy');
-      //   gifImage.attr('data-state', 'still');
-      //   gifImage.attr("src", stillState);
-      //   gifImage.attr("data-still", stillState);
-      //   gifImage.attr("data-animate", animateState);
-      //   gifDiv.prepend(gifImage);
-      //   $("#gifPlacement").prepend(gifDiv)
-        
-      // this code added the gifs to the html page
         $("#gifs-here").prepend(p);
         $("#gifs-here").prepend(gifImage);
         
@@ -75,6 +60,19 @@ $(".gif").on("click", function() {
   }
 );
 
+// // still and animate logic
+      // ----something is off here that I cannot find, keeps telling me still state is not defined!----
+      $(document).on('click', '.gif-image', function(){
+        var state = $(this).attr("data-state");
+        if(state === 'still'){
+             $(this).attr("src", $(this).attr("data-animate"));
+             $(this).attr("data-state", "animate");
+         }else{
+             $(this).attr("src", $(this).attr("data-still"));
+             $(this).attr("data-state", "still");
+         }
+       });
+
 // this code go the input to show up as a button. still working on getting the API URL attached to this
    
     $("#search").on("click", function (event) {
@@ -82,17 +80,26 @@ $(".gif").on("click", function() {
       // had to use the empty button as the input kept typing into the same button
       event.preventDefault();
       // This line grabs the input from the textbox
-      var newTopic = $("#search-input").val().trim();
+      var newTopic = $("#search-input").eq(0).val();
       var newGifButton = $("<button>");
-      newGifButton.addClass("new-gif");
+      // newGifButton.addClass("new-gif");
       newGifButton.attr("data-name", newTopic);
       newGifButton.text(newTopic);
       $("#new-button").prepend(newTopic);
-      topics.push(newTopic);
-      // console.log(newTopic);
+      if (newTopic.length > 0) {
+        topics.push(newTopic);
+       
+      } 
+      populateButtons(topics, "search-input", "#gifs-box");
+
+      {
+        populateButtons(topics, "search-input", "#gifs-box");
+    
       
-  });
+  };
       
+});
+
   
 
 
