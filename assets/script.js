@@ -14,9 +14,10 @@ function buttonSelect() {
 buttonSelect();
 
 // Adding click event listener to all buttons
-$(".gif").on("click", function () {
+$(document).on("click", ".gif", function () {
   // Grabbing and storing the data-name property value from the button
   var chosen = $(this).attr("data-name");
+
   // Constructing a queryURL using the topic name
   var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=eZzkagxWq5nqa76kt0h8tGDtAk5EZMyj&q=" + chosen + "&limit=10&offset=0&rating=PG&lang=en";
 
@@ -49,8 +50,8 @@ $(".gif").on("click", function () {
 
         gifImage.prepend(p);
         gifDiv.prepend(gifImage);
-        $("#gifs-here").prepend(p);
-        $("#gifs-here").prepend(gifImage);
+        // $("#gifs-here").prepend(p);
+        $("#gifs-here").prepend(gifImage, p);
 
       }
 
@@ -72,26 +73,9 @@ $(document).on('click', '.gif-image', function () {
 // this code gets the input to show up as a button. still working on getting the API URL attached to this
 
 $("#search").on("click", function (event) {
-  $("#new-button").empty()
-  // had to use the empty button as the input kept typing into the same button
-  // event.preventDefault();
-  // This line grabs the input from the textbox
-  var newTopic = $("#search-input").eq(0).val();
-  // var newGifButton = $("<button>");
-  // newGifButton.addClass("gif");
-  // newGifButton.attr("data-name", newTopic);
-  // newGifButton.text(newTopic);
-  $("#new-button").prepend(newTopic);
-  if (newTopic.length > 2) {
-    // topics.push(newTopic);
+  var newTopic = $("#search-input").val().trim();
+    topics.push(newTopic);
 
-  }
-  buttonSelect(topics, "search-input", "#gifs-box");
-
-  {
-    buttonSelect(topics, "search-input", "#gifs-box");
-
-
-  };
+    buttonSelect();
 
 });

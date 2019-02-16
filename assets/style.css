@@ -1,5 +1,5 @@
 body{
-    background-color:#ddd;
+    background-color:lightskyblue;
 }
 
 .gifs-container{
@@ -15,13 +15,14 @@ body{
 }
 
 #gifs-box{
-    background: lightgoldenrodyellow;
+    background: lightblue;
+    width:100%;
 }
 
 img{
-    display:flex;
-    height: 200px;
+    height: 300px;
     width: 300px;
+    margin: auto 0;
 }
 
 h1,h3{
@@ -29,22 +30,34 @@ h1,h3{
 }
 
 .gif{
-    color:black;
-    background-color:#fff;
+    color:white;
+    background-color:navy;
     padding:5px;
     margin:5px;
-    border-radius: 12px;
-    font-size:15px;
+    border-radius: 20px;
+    font-size:30px;
 }
 
-#new-button{
-    color:black;
-    background-color:#fff;
-    padding:5px;
-    margin:5px;
-    border-radius: 12px;
-    font-size:15px;
-
+.form-control{
+    height:40px;
 }
 
+#search{
+    font-size:30px;
+}
+
+h1, h3, p {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1{
+    font-size: 45px;
+}
+h3{
+    font-size: 35px;
+}
+
+p{
+    font-size: 25px;
+}
 
